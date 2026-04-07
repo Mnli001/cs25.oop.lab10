@@ -32,9 +32,7 @@ public class Zoo<T extends Animal> {
         animals.add(animal);
     }
 
-    // Хэрэгжүүл: transferAnimals
     public void transferAnimals(List<? extends T> source, List<? super T> destination) {
-        // Бүх амьтдыг source-оос destination руу шилжүүлэх
         destination.addAll(source);
     }
 
