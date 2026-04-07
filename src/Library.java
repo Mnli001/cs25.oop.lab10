@@ -1,45 +1,47 @@
 import java.util.*;
 
 class Book {
-	private String title;
-	private int year;
+    private String title;
+    private int year;
 
-	public Book(String title, int year) {
-		this.title = title;
-		this.year = year;
-	}
+    public Book(String title, int year) {
+        this.title = title;
+        this.year = year;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public int getYear() {
-		return year;
-	}
+    public int getYear() {
+        return year;
+    }
 }
 
 public class Library {
-	private List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
-	public void addBook(String title, int year) {
-		books.add(new Book(title, year));
-	}
+    public void addBook(String title, int year) {
+        books.add(new Book(title, year));
+    }
 
-	class BookShelf implements Iterable<Book> {
-		private int minYear;
+    class BookShelf implements Iterable<Book> {
+        private int minYear;
 
-		public BookShelf(int minYear) {
-			this.minYear = minYear;
-		}
+        public BookShelf(int minYear) {
+            this.minYear = minYear;
+        }
 
-		@Override
-		public Iterator<Book> iterator() {
-			// Хэрэгжүүл: minYear-с хойшхи номнуудыг буцаа
-			return null; // Оруул
-		}
-	}
+        @Override
+        public Iterator<Book> iterator() {
+            // Хэрэгжүүл: minYear-с хойшхи номнуудыг буцаа
+            return books.stream()
+                    .filter(b -> b.getYear() > minYear)
+                    .iterator();
+        }
+    }
 
-	public BookShelf getRecentBooks(int minYear) {
-		return new BookShelf(minYear);
-	}
+    public BookShelf getRecentBooks(int minYear) {
+        return new BookShelf(minYear);
+    }
 }
